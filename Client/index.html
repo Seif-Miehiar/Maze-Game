@@ -1,9 +1,16 @@
 <html>
 
 <head>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../Style/style.css" />
 
+    <!-- <script>
+        $(document).bind("game-container", function() {
+            alert("Div is ready");
+        });
+    </script> -->
     <title>Maze Game</title>
 </head>
 <style>
@@ -17,14 +24,10 @@
     <div>
         <h1>Hello World!</h1>
     </div>
-    <div class="game-container" onload="startGame()"></div>
+    <div class="game-container"></div>
 
     <script src="../index.js"></script>
-    <!-- <script>
-        var myGamePiece;
-        startGame();
-        updateGameArea();
-    </script> -->
+
     <script>
         var myGamePiece;
 
@@ -35,16 +38,18 @@
 
         var myGameArea = {
             canvas: document.createElement("canvas"),
+            div: document.getElementsByClassName("game-container"),
             start: function() {
                 this.canvas.width = 480;
                 this.canvas.height = 270;
                 this.context = this.canvas.getContext("2d");
-                var gameDiv = document.getElementsByClassName("game-container");
+                this.div.appendChild(this.canvas);
 
-                gameDiv.append(this.canvas, document.gameDiv.childNodes[0]);
-
+                // gameDiv.append(this.canvas, document.gameDiv.childNodes[0]);
+                // document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 // document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArea, 20);
+                console.log("gi");
                 window.addEventListener("keydown", function(e) {
                     myGameArea.key = e.keyCode;
                 });
@@ -96,6 +101,11 @@
             myGamePiece.update();
         }
     </script>
+
+    <script>
+        $(".game-container").load(startGame());
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 <footer>
     <div class="footer-container">
